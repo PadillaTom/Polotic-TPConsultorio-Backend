@@ -1,5 +1,7 @@
 package com.padillatomas.consultorio.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,8 @@ public class TestServiceImpl implements TestService {
 	@Autowired
 	private TestRepository testRepo;
 
+	
+	// == SAVE ==
 	@Override
 	public TestDTO saveTestEntity(TestDTO dto) {
 		TestEntity testEntity = testMapper.TestDTO2TestEntity(dto);
@@ -26,6 +30,14 @@ public class TestServiceImpl implements TestService {
 		TestDTO resultDTO = testMapper.TestEntity2TestDTO(savedEntity);
 		
 		return resultDTO;
+	}
+ 
+	// == GET ALL ==
+	@Override
+	public List<TestDTO> getAllTests() {
+		List<TestEntity> testList = testRepo.findAll();
+		List<TestDTO> resultDTOList = testMapper.TestEntityList2TestDTOList(testList);
+		return resultDTOList;
 	}
 
 }

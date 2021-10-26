@@ -1,5 +1,8 @@
 package com.padillatomas.consultorio.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.padillatomas.consultorio.dto.TestDTO;
@@ -27,6 +30,16 @@ public class TestMapper {
 		newDTO.setIsTest(savedEntity.getIsTest());
 		
 		return newDTO;
+	}
+
+	public List<TestDTO> TestEntityList2TestDTOList(List<TestEntity> entityList) {
+		List<TestDTO> newDTOList = new ArrayList<>();
+		
+		for(TestEntity ent : entityList) {
+			newDTOList.add(TestEntity2TestDTO(ent));
+		}
+		
+		return newDTOList;
 	}
 
 }
