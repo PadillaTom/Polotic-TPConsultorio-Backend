@@ -21,6 +21,13 @@ import com.padillatomas.consultorio.service.PatientService;
 @RestController
 @RequestMapping("patients")
 public class PatientController {
+	
+	
+	// Services
+	// == POST ==
+	// == GET ==
+	// == PUT ==
+	// == DELETE ==
 
 	// Services:
 	@Autowired
