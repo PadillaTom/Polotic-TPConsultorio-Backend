@@ -11,6 +11,6 @@ public interface ResponsableService {
 	ResponsableDTO editById(Long responsableId, ResponsableDTO responsableDTO);
 
 	// Delete
-	void softDeleteById(Long id);
+	void softDeleteById(Long id, Long paisId);
 
 }

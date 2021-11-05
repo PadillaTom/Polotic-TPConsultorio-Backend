@@ -68,6 +68,10 @@ public class PatientEntity {
 	public void addResponsable(ResponsableEntity responsableToAdd) {
 		responsables.add(responsableToAdd);
 	}
+	
+	public void removeResponsable(ResponsableEntity respoToRemove) {
+		responsables.remove(respoToRemove);
+	}
 	// addTurno - removeTurno	
 	
 }

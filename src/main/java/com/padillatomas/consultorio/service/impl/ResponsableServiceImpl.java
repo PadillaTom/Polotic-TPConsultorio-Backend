@@ -39,13 +39,14 @@ public class ResponsableServiceImpl implements ResponsableService{
 	public ResponsableDTO saveNewResponsable(Long patientId, ResponsableDTO newResponsable) {
 		// TODO Optional
 		PatientEntity foundPatient = patientRepo.getById(patientId);
+		// TODO: Error when PatientID Inexistent.
+		
 		ResponsableEntity newEntity = responsableMapper.DTO2Entity(newResponsable);
 		ResponsableEntity savedEntity = responsableRepo.save(newEntity);
 		// Add To Patient-Responsables:
 		foundPatient.addResponsable(savedEntity);
 		PatientCompleteDTO foundDTO = patientMapper.entity2DTO(foundPatient);
 		patientServ.editById(patientId, foundDTO);
-		
 		ResponsableDTO resultDTO = responsableMapper.entity2DTO(savedEntity);
 		return resultDTO;
 	}
@@ -72,9 +73,16 @@ public class ResponsableServiceImpl implements ResponsableService{
 	
 	// == DELETE ==
 	@Override
-	public void softDeleteById(Long id) {
+	public void softDeleteById(Long respoId, Long patientId) {
 		// TODO: Deberiamos Verificar Existencia?
-		responsableRepo.deleteById(id);
+		// TODO: Optional
+		ResponsableEntity foundResponsable = responsableRepo.getById(respoId);
+		PatientEntity foundPatient = patientRepo.getById(patientId);
+		foundPatient.removeResponsable(foundResponsable);
+		PatientCompleteDTO foundDTO = patientMapper.entity2DTO(foundPatient);
+		patientServ.editById(patientId, foundDTO);
+		
+		responsableRepo.deleteById(respoId);
 	}
 	
 	// ::: Methods :::

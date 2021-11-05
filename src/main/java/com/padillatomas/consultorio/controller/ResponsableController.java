@@ -42,9 +42,9 @@ public class ResponsableController {
 	}
 	
 	// == DELETE ==
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> softDeleteResponsable(@PathVariable Long id){
-		responsableServ.softDeleteById(id);
+	@DeleteMapping("{respoId}/remove-from/{patientId}")
+	public ResponseEntity<Void> softDeleteResponsable(@PathVariable Long respoId, @PathVariable Long patientId){
+		responsableServ.softDeleteById(respoId, patientId);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
