@@ -50,5 +50,5 @@ public class ResponsableEntity {
 	
 	// SOLO Para SOFT DELETE:
 	private boolean deleted = Boolean.FALSE;
-
+	
 }

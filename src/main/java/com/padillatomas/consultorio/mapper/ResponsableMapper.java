@@ -2,6 +2,8 @@ package com.padillatomas.consultorio.mapper;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -42,7 +44,15 @@ public class ResponsableMapper {
 		return newDTO;
 	}
 	// === List<DTO> -> List<Entity> ===
+	
 	// === List<Entity> -> List<DTO> ===
+	public List<ResponsableDTO> respoEntityList2DTOList(List<ResponsableEntity> entityList){
+		List<ResponsableDTO> newList = new ArrayList<>();
+		for(ResponsableEntity ent : entityList) {
+			newList.add(this.entity2DTO(ent));
+		}
+		return newList;
+	}
 	
 	// ::: Methods :::
 	

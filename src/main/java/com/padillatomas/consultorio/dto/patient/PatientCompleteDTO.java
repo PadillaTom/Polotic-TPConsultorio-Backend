@@ -1,5 +1,9 @@
 package com.padillatomas.consultorio.dto.patient;
 
+import java.util.List;
+
+import com.padillatomas.consultorio.dto.ResponsableDTO;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,4 +26,5 @@ public class PatientCompleteDTO {
 	private boolean hasObraSocial;
 	
 	// Relations: Turnos, Responsables
+	private List<ResponsableDTO> reponsables;
 }

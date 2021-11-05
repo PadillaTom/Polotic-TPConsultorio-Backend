@@ -1,12 +1,17 @@
 package com.padillatomas.consultorio.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.SQLDelete;
@@ -51,15 +56,18 @@ public class PatientEntity {
 	// SOLO Para SOFT DELETE:
 	private boolean deleted = Boolean.FALSE;
 	
-	// Relations:
-	// Many RESPONSABLES
-	// Many TURNOS
+	// Has Many Responsables:
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<ResponsableEntity> responsables = new ArrayList<>();
 	
-	
+	// Has Many Turnos:
 	
 	// ::: Methods :::
 	
 	// addResponsable - removeResponable
+	public void addResponsable(ResponsableEntity responsableToAdd) {
+		responsables.add(responsableToAdd);
+	}
 	// addTurno - removeTurno	
 	
 }

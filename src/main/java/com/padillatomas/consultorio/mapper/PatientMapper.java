@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.padillatomas.consultorio.dto.patient.PatientBasicDTO;
@@ -15,6 +16,8 @@ import com.padillatomas.consultorio.entity.PatientEntity;
 public class PatientMapper {
 	
 	// Mappers:
+	@Autowired
+	ResponsableMapper responsableMapper;
 	
 	//
 	// === DTO -> Entity ===
@@ -47,9 +50,8 @@ public class PatientMapper {
 		newDTO.setPhoneNumber(savedEntity.getPhoneNumber());
 		newDTO.setEmail(savedEntity.getEmail());
 		newDTO.setHasObraSocial(savedEntity.isHasObraSocial());
-		
 		// TODO -> Turnos y Responsables
-		
+		newDTO.setReponsables(responsableMapper.respoEntityList2DTOList(savedEntity.getResponsables()));
 		return newDTO;
 	}
 	
@@ -58,6 +60,7 @@ public class PatientMapper {
 	
 	//
 	// === List<Entity> -> List<DTO> ===
+	
 	
 	// ****************
 	// 	  	BASIC

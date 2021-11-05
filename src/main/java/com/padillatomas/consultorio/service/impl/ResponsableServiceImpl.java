@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.padillatomas.consultorio.dto.ResponsableDTO;
+import com.padillatomas.consultorio.dto.patient.PatientCompleteDTO;
 import com.padillatomas.consultorio.entity.PatientEntity;
 import com.padillatomas.consultorio.entity.ResponsableEntity;
+import com.padillatomas.consultorio.mapper.PatientMapper;
 import com.padillatomas.consultorio.mapper.ResponsableMapper;
 import com.padillatomas.consultorio.repository.PatientRepository;
 import com.padillatomas.consultorio.repository.ResponsableRepository;
@@ -17,9 +19,14 @@ import com.padillatomas.consultorio.service.ResponsableService;
 @Service
 public class ResponsableServiceImpl implements ResponsableService{
 
-	// Mappers:
+	// Service:
+	@Autowired
+	private PatientServiceImpl patientServ;
+	// Mapper:
 	@Autowired
 	private ResponsableMapper responsableMapper;
+	@Autowired
+	private PatientMapper patientMapper;
 	
 	// Repository:
 	@Autowired
@@ -32,14 +39,14 @@ public class ResponsableServiceImpl implements ResponsableService{
 	public ResponsableDTO saveNewResponsable(Long patientId, ResponsableDTO newResponsable) {
 		// TODO Optional
 		PatientEntity foundPatient = patientRepo.getById(patientId);
-		System.out.println("Found Patient: " + foundPatient.getDni());
-		
 		ResponsableEntity newEntity = responsableMapper.DTO2Entity(newResponsable);
 		ResponsableEntity savedEntity = responsableRepo.save(newEntity);
-		ResponsableDTO resultDTO = responsableMapper.entity2DTO(savedEntity);
+		// Add To Patient-Responsables:
+		foundPatient.addResponsable(savedEntity);
+		PatientCompleteDTO foundDTO = patientMapper.entity2DTO(foundPatient);
+		patientServ.editById(patientId, foundDTO);
 		
-		// ADD TO LIST RESPONSABLE INSIDE PATIENT
-	
+		ResponsableDTO resultDTO = responsableMapper.entity2DTO(savedEntity);
 		return resultDTO;
 	}
 	
