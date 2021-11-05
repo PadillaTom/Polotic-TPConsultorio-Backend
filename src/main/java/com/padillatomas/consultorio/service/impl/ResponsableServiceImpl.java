@@ -1,5 +1,8 @@
 package com.padillatomas.consultorio.service.impl;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,9 +42,40 @@ public class ResponsableServiceImpl implements ResponsableService{
 	
 		return resultDTO;
 	}
+	
 	// == GET ==
+	
 	// == PUT ==
+	@Override
+	public ResponsableDTO editById(Long id, ResponsableDTO newData) {
+		// TODO: Optional
+		ResponsableEntity foundResponsable = responsableRepo.getById(id);
+		foundResponsable.setDni(newData.getDni());
+		foundResponsable.setFirstName(newData.getFirstName());
+		foundResponsable.setLastName(newData.getLastName());
+		foundResponsable.setBirthDate(this.string2LocalDate(newData.getBirthDate()));
+		foundResponsable.setAddress(newData.getAddress());
+		foundResponsable.setPhoneNumber(newData.getPhoneNumber());
+		foundResponsable.setEmail(newData.getEmail());
+		foundResponsable.setParentesco(newData.getParentesco());
+		ResponsableEntity editedResponsable = responsableRepo.save(foundResponsable);
+		ResponsableDTO resultDTO = responsableMapper.entity2DTO(editedResponsable);
+		return resultDTO;
+	}
+	
 	// == DELETE ==
+	@Override
+	public void softDeleteById(Long id) {
+		// TODO: Deberiamos Verificar Existencia?
+		responsableRepo.deleteById(id);
+	}
 	
 	// ::: Methods :::
+	// String to LocalDate:
+	public LocalDate string2LocalDate (String dateString) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+		LocalDate formattedDate = LocalDate.parse(dateString, formatter);	
+		return formattedDate;
+	}
+
 }
