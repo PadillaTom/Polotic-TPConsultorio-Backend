@@ -5,6 +5,12 @@ import com.padillatomas.consultorio.dto.WorkScheduleDTO;
 public interface WorkScheduleService {
 	
 	// Post
-	WorkScheduleDTO saveNewWS(WorkScheduleDTO newWS);
+	WorkScheduleDTO saveNewWS(Long dentistId, WorkScheduleDTO newWS);
+
+	// Put
+	WorkScheduleDTO editById(Long id, WorkScheduleDTO newData);
+
+	// Delete
+	void softDeleteById(Long scheduleId, Long dentistId);
 
 }

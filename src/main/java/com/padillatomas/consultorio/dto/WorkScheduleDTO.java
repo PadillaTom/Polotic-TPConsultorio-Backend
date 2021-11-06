@@ -1,7 +1,5 @@
 package com.padillatomas.consultorio.dto;
 
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +8,7 @@ import lombok.Setter;
 public class WorkScheduleDTO {
 
 	private Long id;
-	private Date beginsAt;
-	private Date endsAt;
+	private String beginsAt;
+	private String endsAt;
 	private String day;
 }

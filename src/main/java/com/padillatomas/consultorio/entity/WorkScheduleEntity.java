@@ -1,6 +1,6 @@
 package com.padillatomas.consultorio.entity;
 
-import java.util.Date;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,11 +28,13 @@ public class WorkScheduleEntity {
 	private Long id;
 	
 	@Column(name = "begins")
-	private Date beginsAt;
+	private LocalTime beginsAt;
 	
 	@Column(name = "ends")
-	private Date endsAt;
+	private LocalTime endsAt;
 	
 	private String day;
+	
+	private boolean deleted = Boolean.FALSE;		
 
 }

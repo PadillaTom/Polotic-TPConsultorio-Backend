@@ -8,7 +8,7 @@ import com.padillatomas.consultorio.dto.patient.PatientCompleteDTO;
 public interface PatientService {
 
 	// Post
-	PatientCompleteDTO saveNewPatient(PatientCompleteDTO newPatient);
+	PatientBasicDTO saveNewPatient(PatientBasicDTO newPatient);
 
 	// Get
 	List<PatientBasicDTO> getBasicPatients();

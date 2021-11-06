@@ -47,6 +47,7 @@ public class ResponsableServiceImpl implements ResponsableService{
 		foundPatient.addResponsable(savedEntity);
 		PatientCompleteDTO foundDTO = patientMapper.entity2DTO(foundPatient);
 		patientServ.editById(patientId, foundDTO);
+		
 		ResponsableDTO resultDTO = responsableMapper.entity2DTO(savedEntity);
 		return resultDTO;
 	}

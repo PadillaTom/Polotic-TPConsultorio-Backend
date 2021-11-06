@@ -21,21 +21,6 @@ public class PatientMapper {
 	
 	//
 	// === DTO -> Entity ===
-	public PatientEntity DTO2Entity(PatientCompleteDTO newPatient) {
-		PatientEntity newEntity = new PatientEntity();
-		newEntity.setDni(newPatient.getDni());
-		newEntity.setFirstName(newPatient.getFirstName());
-		newEntity.setLastName(newPatient.getLastName());
-		newEntity.setBirthDate(this.string2LocalDate(newPatient.getBirthDate()));
-		newEntity.setAddress(newPatient.getAddress());
-		newEntity.setPhoneNumber(newPatient.getPhoneNumber());
-		newEntity.setEmail(newPatient.getEmail());
-		newEntity.setHasObraSocial(newPatient.isHasObraSocial());
-		
-		// TODO -> Turnos y Responsables
-		
-		return newEntity;
-	}
 	
 	//
 	// === Entity -> DTO ===
@@ -67,6 +52,18 @@ public class PatientMapper {
 	// ****************
 	
 	// === DTO -> Entity ===
+	public PatientEntity DTO2BasicEntity(PatientBasicDTO newPatient) {
+		PatientEntity newEntity = new PatientEntity();
+		newEntity.setDni(newPatient.getDni());
+		newEntity.setFirstName(newPatient.getFirstName());
+		newEntity.setLastName(newPatient.getLastName());
+		newEntity.setBirthDate(this.string2LocalDate(newPatient.getBirthDate()));
+		newEntity.setAddress(newPatient.getAddress());
+		newEntity.setPhoneNumber(newPatient.getPhoneNumber());
+		newEntity.setEmail(newPatient.getEmail());
+		newEntity.setHasObraSocial(newPatient.isHasObraSocial());
+		return newEntity;
+	}
 	
 	//
 	// === Entity -> DTO ===

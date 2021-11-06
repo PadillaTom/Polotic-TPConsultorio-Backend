@@ -22,13 +22,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "patient")
+@Table(name = "dentist")
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE patient SET deleted = true WHERE id=?")
+@SQLDelete(sql = "UPDATE dentist SET deleted = true WHERE id=?")
 @Where(clause = "deleted = false")
-public class PatientEntity {
-
+public class DentistEntity {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
@@ -48,27 +48,27 @@ public class PatientEntity {
 	
 	private String address;
 	private String phoneNumber;
-	private String email;		
+	private String email;	
 	private boolean deleted = Boolean.FALSE;	
-
-	private boolean hasObraSocial;	
 	
-	// Has Many Responsables:
+	private String speciality;
+	
+	// Has Many Schedules:
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<ResponsableEntity> responsables = new ArrayList<>();
+	private List<WorkScheduleEntity> schedules = new ArrayList<>();
 	
-	// Has Many Turnos:
+	// Many Turnos
 	
-	// ::: Methods :::	
-	// addResponsable - removeResponable
-	public void addResponsable(ResponsableEntity responsableToAdd) {
-		responsables.add(responsableToAdd);
-	}
+	// One Usuario
 	
-	public void removeResponsable(ResponsableEntity respoToRemove) {
-		responsables.remove(respoToRemove);
-	}
-	
-	// addTurno - removeTurno	
-	
+	// ::: Methods :::
+	// addSchedule - removeSchedule
+		public void addSchedule(WorkScheduleEntity scheduleToAdd) {
+			schedules.add(scheduleToAdd);
+		}
+		
+		public void removeSchedule(WorkScheduleEntity scheduleToRemove) {
+			schedules.remove(scheduleToRemove);
+		}
+
 }

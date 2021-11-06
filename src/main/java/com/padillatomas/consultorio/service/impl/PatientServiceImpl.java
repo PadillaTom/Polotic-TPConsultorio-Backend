@@ -17,7 +17,7 @@ import com.padillatomas.consultorio.service.PatientService;
 @Service
 public class PatientServiceImpl implements PatientService {
 
-	// Mappers:
+	// Mapper:
 	@Autowired
 	private PatientMapper patientMap;
 	
@@ -27,12 +27,11 @@ public class PatientServiceImpl implements PatientService {
 	
 	
 	// == POST ==
-
 	@Override
-	public PatientCompleteDTO saveNewPatient(PatientCompleteDTO newPatient) {
-		PatientEntity newEntity = patientMap.DTO2Entity(newPatient);
+	public PatientBasicDTO saveNewPatient(PatientBasicDTO newPatient) {
+		PatientEntity newEntity = patientMap.DTO2BasicEntity(newPatient);
 		PatientEntity savedEntity = patientRepo.save(newEntity);
-		PatientCompleteDTO resultDTO = patientMap.entity2DTO(savedEntity);
+		PatientBasicDTO resultDTO = patientMap.basicEntity2BasicDTO(savedEntity);
 		return resultDTO;
 	}
 

@@ -35,8 +35,8 @@ public class PatientController {
 	
 	// == POST ==
 	@PostMapping("/create")
-	public ResponseEntity<PatientCompleteDTO> createNewPatient(@RequestBody PatientCompleteDTO newPatient){
-		PatientCompleteDTO createdPatient = patientServ.saveNewPatient(newPatient);
+	public ResponseEntity<PatientBasicDTO> createNewPatient(@RequestBody PatientBasicDTO newPatient){
+		PatientBasicDTO createdPatient = patientServ.saveNewPatient(newPatient);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdPatient);
 	}
 	
@@ -69,9 +69,6 @@ public class PatientController {
 		patientServ.softDeleteById(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
-	
-	
-	
 	
 	
 }
