@@ -63,5 +63,4 @@ public class DentistController {
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 	
-	
 }

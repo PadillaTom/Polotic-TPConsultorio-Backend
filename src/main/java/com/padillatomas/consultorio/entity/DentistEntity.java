@@ -63,12 +63,12 @@ public class DentistEntity {
 	
 	// ::: Methods :::
 	// addSchedule - removeSchedule
-		public void addSchedule(WorkScheduleEntity scheduleToAdd) {
-			schedules.add(scheduleToAdd);
-		}
-		
-		public void removeSchedule(WorkScheduleEntity scheduleToRemove) {
-			schedules.remove(scheduleToRemove);
-		}
+	public void addSchedule(WorkScheduleEntity scheduleToAdd) {
+		schedules.add(scheduleToAdd);
+	}
+	
+	public void removeSchedule(WorkScheduleEntity scheduleToRemove) {
+		schedules.remove(scheduleToRemove);
+	}
 
 }
