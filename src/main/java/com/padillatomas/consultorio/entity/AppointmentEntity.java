@@ -2,11 +2,16 @@ package com.padillatomas.consultorio.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.SQLDelete;
@@ -35,6 +40,8 @@ public class AppointmentEntity {
 	
 	private String diagnosis;
 	
+	private boolean deleted = Boolean.FALSE;		
+	
 	// PROCESO:
 	// getPaciente(id),
 	// addTurno a Paciente,
@@ -42,7 +49,12 @@ public class AppointmentEntity {
 	// "blockear" 30min en scheduleOdontologo
 	
 	// Pertenece a Odontologo
-	// Pertenece a Paciente
+	@ManyToMany(mappedBy = "dentistRdvs", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<DentistEntity> dentists = new ArrayList<>();
+
+	// Pertenece a Paciente:
+	@ManyToMany(mappedBy = "patientRdvs", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<PatientEntity> patients = new ArrayList<>();
 	
 	
 

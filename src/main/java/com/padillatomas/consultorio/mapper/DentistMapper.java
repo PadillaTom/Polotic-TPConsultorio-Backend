@@ -19,6 +19,8 @@ public class DentistMapper {
 	@Autowired
 	private WorkScheduleMapper schMapper;
 	
+	@Autowired
+	private AppointmentMapper appointmentMapper;
 	
 	//
 	// === DTO -> Entity ===
@@ -37,6 +39,7 @@ public class DentistMapper {
 		newDTO.setSpeciality(foundDentist.getSpeciality());
 		// TODO -> Turnos, Schedule, Usuario
 		newDTO.setSchedules(schMapper.wsEntityList2DTOList(foundDentist.getSchedules()));
+		newDTO.setAppointments(appointmentMapper.appoEntityList2DTOList(foundDentist.getDentistRdvs()));
 		return newDTO;
 	}
 

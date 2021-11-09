@@ -19,6 +19,9 @@ public class PatientMapper {
 	@Autowired
 	ResponsableMapper responsableMapper;
 	
+	@Autowired
+	AppointmentMapper appointmentMapper;
+	
 	//
 	// === DTO -> Entity ===
 	
@@ -37,6 +40,7 @@ public class PatientMapper {
 		newDTO.setHasObraSocial(savedEntity.isHasObraSocial());
 		// TODO -> Turnos y Responsables
 		newDTO.setReponsables(responsableMapper.respoEntityList2DTOList(savedEntity.getResponsables()));
+		newDTO.setAppointments(appointmentMapper.appoEntityList2DTOList(savedEntity.getPatientRdvs()));
 		return newDTO;
 	}
 	

@@ -3,6 +3,8 @@ package com.padillatomas.consultorio.mapper;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.stereotype.Component;
@@ -39,9 +41,17 @@ public class AppointmentMapper {
 		return newDTO;
 	}
 	
-	
-	// ::: Methods :::	
-	
+	//	
+	// === List<DTO> -> List<Entity> ===
+	public List<AppointmentDTO> appoEntityList2DTOList(List<AppointmentEntity> patientRdvs) {
+		List<AppointmentDTO> newList = new ArrayList<>();
+		for (AppointmentEntity ent : patientRdvs) {
+			newList.add(this.entity2DTO(ent));
+		}
+		return newList;
+	}
+		
+	// ::: Methods :::		
 	// String to LocalDate
 	public LocalDate string2LocalDate (String dateString) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
@@ -63,7 +73,7 @@ public class AppointmentMapper {
 	// Time to String
 	public String localTime2String(LocalTime time) {
 		return time.format(DateTimeFormatter.ofPattern("hh:mm", Locale.ENGLISH));
-	}
+	}	
 	
 	
 }

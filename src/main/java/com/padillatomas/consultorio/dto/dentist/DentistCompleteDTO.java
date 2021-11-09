@@ -2,6 +2,7 @@ package com.padillatomas.consultorio.dto.dentist;
 
 import java.util.List;
 
+import com.padillatomas.consultorio.dto.AppointmentDTO;
 import com.padillatomas.consultorio.dto.WorkScheduleDTO;
 
 import lombok.Getter;
@@ -25,5 +26,6 @@ public class DentistCompleteDTO {
 	private String speciality;
 	
 	private List<WorkScheduleDTO> schedules;
+	private List<AppointmentDTO> appointments;
 	
 }

@@ -4,6 +4,6 @@ import com.padillatomas.consultorio.dto.AppointmentDTO;
 
 public interface AppointmentService {
 
-	AppointmentDTO saveNewAppointment(AppointmentDTO newAppo);
+	AppointmentDTO saveNewAppointment(Long patientId, Long dentistId, AppointmentDTO newAppo);
 
 }

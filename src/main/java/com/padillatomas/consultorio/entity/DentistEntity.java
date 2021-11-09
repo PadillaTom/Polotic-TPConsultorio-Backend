@@ -11,6 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -58,6 +61,16 @@ public class DentistEntity {
 	private List<WorkScheduleEntity> schedules = new ArrayList<>();
 	
 	// Many Turnos
+	@ManyToMany(
+			cascade = {
+					CascadeType.PERSIST,
+					CascadeType.MERGE,
+			})
+	@JoinTable(
+			name = "appointment_dentist",
+			joinColumns= @JoinColumn(name = "dentist_id"),
+			inverseJoinColumns = @JoinColumn(name = "appointment_id"))
+	private List<AppointmentEntity> dentistRdvs = new ArrayList<>();
 	
 	// One Usuario
 	
@@ -70,5 +83,15 @@ public class DentistEntity {
 	public void removeSchedule(WorkScheduleEntity scheduleToRemove) {
 		schedules.remove(scheduleToRemove);
 	}
+	
+	// addRDV - removeRDV
+	public void addRdvs(AppointmentEntity rdv) {
+		dentistRdvs.add(rdv);
+	}
+	
+	public void removeRdvs(AppointmentEntity rdv) {
+		dentistRdvs.remove(rdv);
+	}
+	
 
 }

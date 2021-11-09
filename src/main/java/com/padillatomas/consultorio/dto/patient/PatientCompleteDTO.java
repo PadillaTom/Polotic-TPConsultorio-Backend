@@ -2,6 +2,7 @@ package com.padillatomas.consultorio.dto.patient;
 
 import java.util.List;
 
+import com.padillatomas.consultorio.dto.AppointmentDTO;
 import com.padillatomas.consultorio.dto.ResponsableDTO;
 
 import lombok.Getter;
@@ -27,4 +28,5 @@ public class PatientCompleteDTO {
 	
 	// Relations: Turnos, Responsables
 	private List<ResponsableDTO> reponsables;
+	private List<AppointmentDTO> appointments;
 }
