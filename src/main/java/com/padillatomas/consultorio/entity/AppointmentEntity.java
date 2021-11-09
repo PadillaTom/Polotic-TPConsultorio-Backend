@@ -2,7 +2,6 @@ package com.padillatomas.consultorio.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
