@@ -3,28 +3,28 @@ package com.padillatomas.consultorio.service.impl;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import com.padillatomas.consultorio.entity.TutorEntity;
+import com.padillatomas.consultorio.service.TutorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.padillatomas.consultorio.dto.ResponsableDTO;
+import com.padillatomas.consultorio.dto.TutorDTO;
 import com.padillatomas.consultorio.dto.patient.PatientCompleteDTO;
 import com.padillatomas.consultorio.entity.PatientEntity;
-import com.padillatomas.consultorio.entity.ResponsableEntity;
 import com.padillatomas.consultorio.mapper.PatientMapper;
-import com.padillatomas.consultorio.mapper.ResponsableMapper;
+import com.padillatomas.consultorio.mapper.TutorMapper;
 import com.padillatomas.consultorio.repository.PatientRepository;
-import com.padillatomas.consultorio.repository.ResponsableRepository;
-import com.padillatomas.consultorio.service.ResponsableService;
+import com.padillatomas.consultorio.repository.TutorRepository;
 
 @Service
-public class ResponsableServiceImpl implements ResponsableService{
+public class TutorServiceImpl implements TutorService {
 
 	// Service:
 	@Autowired
 	private PatientServiceImpl patientServ;
 	// Mapper:
 	@Autowired
-	private ResponsableMapper responsableMapper;
+	private TutorMapper tutorMapper;
 	@Autowired
 	private PatientMapper patientMapper;
 	
@@ -32,23 +32,23 @@ public class ResponsableServiceImpl implements ResponsableService{
 	@Autowired
 	private PatientRepository patientRepo;
 	@Autowired
-	private ResponsableRepository responsableRepo;
+	private TutorRepository tutorRepo;
 	
 	// == POST ==
 	@Override
-	public ResponsableDTO saveNewResponsable(Long patientId, ResponsableDTO newResponsable) {
+	public TutorDTO saveNewTutor(Long patientId, TutorDTO newTutor) {
 		// TODO Optional
 		PatientEntity foundPatient = patientRepo.getById(patientId);
 		// TODO: Error when PatientID Inexistent.
 		
-		ResponsableEntity newEntity = responsableMapper.DTO2Entity(newResponsable);
-		ResponsableEntity savedEntity = responsableRepo.save(newEntity);
+		TutorEntity newEntity = tutorMapper.DTO2Entity(newTutor);
+		TutorEntity savedEntity = tutorRepo.save(newEntity);
 		// Add To Patient-Responsables:
-		foundPatient.addResponsable(savedEntity);
+		foundPatient.addTutor(savedEntity);
 		PatientCompleteDTO foundDTO = patientMapper.entity2DTO(foundPatient);
 		patientServ.editById(patientId, foundDTO);
 		
-		ResponsableDTO resultDTO = responsableMapper.entity2DTO(savedEntity);
+		TutorDTO resultDTO = tutorMapper.entity2DTO(savedEntity);
 		return resultDTO;
 	}
 	
@@ -56,19 +56,19 @@ public class ResponsableServiceImpl implements ResponsableService{
 	
 	// == PUT ==
 	@Override
-	public ResponsableDTO editById(Long id, ResponsableDTO newData) {
+	public TutorDTO editById(Long id, TutorDTO newData) {
 		// TODO: Optional
-		ResponsableEntity foundResponsable = responsableRepo.getById(id);
-		foundResponsable.setDni(newData.getDni());
-		foundResponsable.setFirstName(newData.getFirstName());
-		foundResponsable.setLastName(newData.getLastName());
-		foundResponsable.setBirthDate(this.string2LocalDate(newData.getBirthDate()));
-		foundResponsable.setAddress(newData.getAddress());
-		foundResponsable.setPhoneNumber(newData.getPhoneNumber());
-		foundResponsable.setEmail(newData.getEmail());
-		foundResponsable.setParentesco(newData.getParentesco());
-		ResponsableEntity editedResponsable = responsableRepo.save(foundResponsable);
-		ResponsableDTO resultDTO = responsableMapper.entity2DTO(editedResponsable);
+		TutorEntity foundTutor = tutorRepo.getById(id);
+		foundTutor.setDni(newData.getDni());
+		foundTutor.setFirstName(newData.getFirstName());
+		foundTutor.setLastName(newData.getLastName());
+		foundTutor.setBirthDate(this.string2LocalDate(newData.getBirthDate()));
+		foundTutor.setAddress(newData.getAddress());
+		foundTutor.setPhoneNumber(newData.getPhoneNumber());
+		foundTutor.setEmail(newData.getEmail());
+		foundTutor.setRelation(newData.getRelation());
+		TutorEntity editedTutor = tutorRepo.save(foundTutor);
+		TutorDTO resultDTO = tutorMapper.entity2DTO(editedTutor);
 		return resultDTO;
 	}
 	
@@ -77,13 +77,12 @@ public class ResponsableServiceImpl implements ResponsableService{
 	public void softDeleteById(Long respoId, Long patientId) {
 		// TODO: Deberiamos Verificar Existencia?
 		// TODO: Optional
-		ResponsableEntity foundResponsable = responsableRepo.getById(respoId);
+		TutorEntity foundTutor = tutorRepo.getById(respoId);
 		PatientEntity foundPatient = patientRepo.getById(patientId);
-		foundPatient.removeResponsable(foundResponsable);
+		foundPatient.removeTutor(foundTutor);
 		PatientCompleteDTO foundDTO = patientMapper.entity2DTO(foundPatient);
 		patientServ.editById(patientId, foundDTO);
-		
-		responsableRepo.deleteById(respoId);
+		tutorRepo.deleteById(respoId);
 	}
 	
 	// ::: Methods :::

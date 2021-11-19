@@ -58,7 +58,7 @@ public class PatientEntity {
 	
 	// Has Many Responsables:
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<ResponsableEntity> responsables = new ArrayList<>();
+	private List<TutorEntity> tutors = new ArrayList<>();
 	
 	// Has Many Turnos:
 	@ManyToMany(
@@ -74,12 +74,12 @@ public class PatientEntity {
 	
 	// ::: Methods :::	
 	// addResponsable - removeResponable
-	public void addResponsable(ResponsableEntity responsableToAdd) {
-		responsables.add(responsableToAdd);
+	public void addTutor(TutorEntity tutorToAdd) {
+		tutors.add(tutorToAdd);
 	}
 	
-	public void removeResponsable(ResponsableEntity respoToRemove) {
-		responsables.remove(respoToRemove);
+	public void removeTutor(TutorEntity tutorToRemove) {
+		tutors.remove(tutorToRemove);
 	}
 	
 	// addTurno - removeTurno	

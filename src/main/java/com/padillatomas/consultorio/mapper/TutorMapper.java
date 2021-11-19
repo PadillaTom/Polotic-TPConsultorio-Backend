@@ -5,33 +5,33 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.padillatomas.consultorio.entity.TutorEntity;
 import org.springframework.stereotype.Component;
 
-import com.padillatomas.consultorio.dto.ResponsableDTO;
-import com.padillatomas.consultorio.entity.ResponsableEntity;
+import com.padillatomas.consultorio.dto.TutorDTO;
 
 @Component
-public class ResponsableMapper {
+public class TutorMapper {
 	
 	// Mappers:
 	
 	// === DTO -> Entity ===
-	public ResponsableEntity DTO2Entity(ResponsableDTO newResponsable) {
-		ResponsableEntity newEntity = new ResponsableEntity();
-		newEntity.setDni(newResponsable.getDni());
-		newEntity.setFirstName(newResponsable.getFirstName());
-		newEntity.setLastName(newResponsable.getLastName());
-		newEntity.setBirthDate(this.string2LocalDate(newResponsable.getBirthDate()));
-		newEntity.setAddress(newResponsable.getAddress());
-		newEntity.setPhoneNumber(newResponsable.getPhoneNumber());
-		newEntity.setEmail(newResponsable.getEmail());
-		newEntity.setParentesco(newResponsable.getParentesco());
+	public TutorEntity DTO2Entity(TutorDTO newTutor) {
+		TutorEntity newEntity = new TutorEntity();
+		newEntity.setDni(newTutor.getDni());
+		newEntity.setFirstName(newTutor.getFirstName());
+		newEntity.setLastName(newTutor.getLastName());
+		newEntity.setBirthDate(this.string2LocalDate(newTutor.getBirthDate()));
+		newEntity.setAddress(newTutor.getAddress());
+		newEntity.setPhoneNumber(newTutor.getPhoneNumber());
+		newEntity.setEmail(newTutor.getEmail());
+		newEntity.setRelation(newTutor.getRelation());
 		return newEntity;
 	}
 	
 	// === Entity -> DTO ===
-	public ResponsableDTO entity2DTO(ResponsableEntity savedEntity) {
-		ResponsableDTO newDTO = new ResponsableDTO();
+	public TutorDTO entity2DTO(TutorEntity savedEntity) {
+		TutorDTO newDTO = new TutorDTO();
 		newDTO.setId(savedEntity.getId());
 		newDTO.setDni(savedEntity.getDni());
 		newDTO.setFirstName(savedEntity.getFirstName());
@@ -40,15 +40,15 @@ public class ResponsableMapper {
 		newDTO.setAddress(savedEntity.getAddress());
 		newDTO.setPhoneNumber(savedEntity.getPhoneNumber());
 		newDTO.setEmail(savedEntity.getEmail());
-		newDTO.setParentesco(savedEntity.getParentesco());
+		newDTO.setRelation(savedEntity.getRelation());
 		return newDTO;
 	}
 	// === List<DTO> -> List<Entity> ===
 	
 	// === List<Entity> -> List<DTO> ===
-	public List<ResponsableDTO> respoEntityList2DTOList(List<ResponsableEntity> entityList){
-		List<ResponsableDTO> newList = new ArrayList<>();
-		for(ResponsableEntity ent : entityList) {
+	public List<TutorDTO> tutorEntityList2DTOList(List<TutorEntity> entityList){
+		List<TutorDTO> newList = new ArrayList<>();
+		for(TutorEntity ent : entityList) {
 			newList.add(this.entity2DTO(ent));
 		}
 		return newList;

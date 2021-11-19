@@ -17,7 +17,7 @@ public class PatientMapper {
 	
 	// Mappers:
 	@Autowired
-	ResponsableMapper responsableMapper;
+    TutorMapper tutorMapper;
 	
 	@Autowired
 	AppointmentMapper appointmentMapper;
@@ -39,7 +39,7 @@ public class PatientMapper {
 		newDTO.setEmail(savedEntity.getEmail());
 		newDTO.setHasSecurity(savedEntity.isHasSecurity());
 		// TODO -> Turnos y Responsables
-		newDTO.setReponsables(responsableMapper.respoEntityList2DTOList(savedEntity.getResponsables()));
+		newDTO.setTutors(tutorMapper.tutorEntityList2DTOList(savedEntity.getTutors()));
 		newDTO.setAppointments(appointmentMapper.appoEntityList2DTOList(savedEntity.getPatientRdvs()));
 		return newDTO;
 	}

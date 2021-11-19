@@ -3,7 +3,7 @@ package com.padillatomas.consultorio.dto.patient;
 import java.util.List;
 
 import com.padillatomas.consultorio.dto.AppointmentDTO;
-import com.padillatomas.consultorio.dto.ResponsableDTO;
+import com.padillatomas.consultorio.dto.TutorDTO;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +27,6 @@ public class PatientCompleteDTO {
 	private boolean hasSecurity;
 	
 	// Relations: Turnos, Responsables
-	private List<ResponsableDTO> reponsables;
+	private List<TutorDTO> tutors;
 	private List<AppointmentDTO> appointments;
 }

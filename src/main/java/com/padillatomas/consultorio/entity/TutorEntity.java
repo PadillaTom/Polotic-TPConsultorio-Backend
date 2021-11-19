@@ -17,12 +17,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "responsable")
+@Table(name = "tutor")
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE responsable SET deleted = true WHERE id=?")
+@SQLDelete(sql = "UPDATE tutor SET deleted = true WHERE id=?")
 @Where(clause = "deleted = false")
-public class ResponsableEntity {
+public class TutorEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -46,7 +46,7 @@ public class ResponsableEntity {
 	private String email;
 	
 	// Responsable:
-	private String parentesco;
+	private String relation;
 	
 	// SOLO Para SOFT DELETE:
 	private boolean deleted = Boolean.FALSE;

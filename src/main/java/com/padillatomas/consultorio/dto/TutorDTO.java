@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ResponsableDTO {
+public class TutorDTO {
 
 	private Long id;
 	// Persona:
@@ -16,5 +16,5 @@ public class ResponsableDTO {
 	private String address;
 	private String phoneNumber;
 	private String email;
-	private String parentesco;
+	private String relation;
 }
