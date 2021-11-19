@@ -40,7 +40,7 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	public List<PatientBasicDTO> getBasicPatients() {
 		// TODO Optional
-		List<PatientEntity> savedPatients = patientRepo.findAll();
+		List<PatientEntity> savedPatients = patientRepo.findAllByOrderByIdDesc();
 		List<PatientBasicDTO> basicPatients = patientMap.entityList2BasicDTOList(savedPatients);
 		return basicPatients;
 	}
@@ -65,7 +65,7 @@ public class PatientServiceImpl implements PatientService {
 		foundPatient.setAddress(newData.getAddress());
 		foundPatient.setPhoneNumber(newData.getPhoneNumber());
 		foundPatient.setEmail(newData.getEmail());
-		foundPatient.setHasObraSocial(newData.isHasObraSocial());
+		foundPatient.setHasSecurity(newData.isHasSecurity());
 		PatientEntity editedPatient = patientRepo.save(foundPatient);
 		PatientCompleteDTO resultDTO = patientMap.entity2DTO(editedPatient);
 		return resultDTO;

@@ -38,7 +38,7 @@ public class DentistServiceImpl implements DentistService {
 	@Override
 	public List<DentistBasicDTO> getBasicDentist() {
 		// TODO Optional
-		List<DentistEntity> savedDentists = dentistRepo.findAll();
+		List<DentistEntity> savedDentists = dentistRepo.findAllByOrderByIdDesc();
 		List<DentistBasicDTO> basicDentists = dentistMapper.entityList2BasicDTOList(savedDentists);
 		return basicDentists;
 	}

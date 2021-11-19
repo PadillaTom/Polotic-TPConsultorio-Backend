@@ -24,7 +24,7 @@ public class PatientCompleteDTO {
 	private String email;
 	
 	// Patient:
-	private boolean hasObraSocial;
+	private boolean hasSecurity;
 	
 	// Relations: Turnos, Responsables
 	private List<ResponsableDTO> reponsables;

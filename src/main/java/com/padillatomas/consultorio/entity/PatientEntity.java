@@ -54,7 +54,7 @@ public class PatientEntity {
 	private String email;		
 	private boolean deleted = Boolean.FALSE;	
 
-	private boolean hasObraSocial;	
+	private boolean hasSecurity;
 	
 	// Has Many Responsables:
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

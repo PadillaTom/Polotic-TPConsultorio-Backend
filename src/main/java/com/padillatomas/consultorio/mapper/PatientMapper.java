@@ -37,7 +37,7 @@ public class PatientMapper {
 		newDTO.setAddress(savedEntity.getAddress());
 		newDTO.setPhoneNumber(savedEntity.getPhoneNumber());
 		newDTO.setEmail(savedEntity.getEmail());
-		newDTO.setHasObraSocial(savedEntity.isHasObraSocial());
+		newDTO.setHasSecurity(savedEntity.isHasSecurity());
 		// TODO -> Turnos y Responsables
 		newDTO.setReponsables(responsableMapper.respoEntityList2DTOList(savedEntity.getResponsables()));
 		newDTO.setAppointments(appointmentMapper.appoEntityList2DTOList(savedEntity.getPatientRdvs()));
@@ -65,7 +65,7 @@ public class PatientMapper {
 		newEntity.setAddress(newPatient.getAddress());
 		newEntity.setPhoneNumber(newPatient.getPhoneNumber());
 		newEntity.setEmail(newPatient.getEmail());
-		newEntity.setHasObraSocial(newPatient.isHasObraSocial());
+		newEntity.setHasSecurity(newPatient.isHasSecurity());
 		return newEntity;
 	}
 	
@@ -81,7 +81,7 @@ public class PatientMapper {
 		newDTO.setAddress(entity.getAddress());
 		newDTO.setPhoneNumber(entity.getPhoneNumber());
 		newDTO.setEmail(entity.getEmail());
-		newDTO.setHasObraSocial(entity.isHasObraSocial());
+		newDTO.setHasSecurity(entity.isHasSecurity());
 		return newDTO;
 	}
 	

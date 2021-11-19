@@ -19,6 +19,6 @@ public class PatientBasicDTO {
 	private String email;
 	
 	// Patient:
-	private boolean hasObraSocial;
+	private boolean hasSecurity;
 
 }
